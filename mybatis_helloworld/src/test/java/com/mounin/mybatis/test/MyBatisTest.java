@@ -26,15 +26,17 @@ public class MyBatisTest {
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
         // 3. 获取SqlSessionFactory对象
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);
-        // 4. 获取sql的会话对象sqlSession，是MyBatis提供的操作数据库的对象
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 4. 获取sql的会话对象sqlSession(不会自动提交事务)，是MyBatis提供的操作数据库的对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 4. 获取sql的会话对象sqlSession(不会自动提交事务)，是MyBatis提供的操作数据库的对象
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
         // 5. 获取UserMapper的代理实现类对象
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         // 6. 调用mapper接口中的方法，实现添加用户信息的功能
         int result = mapper.insertUser();
         System.out.println("结果是：" + result);
         // 7. 提交事务
-        sqlSession.commit();
+//        sqlSession.commit();
         // 8. 关闭事务
         sqlSession.close();
     }
