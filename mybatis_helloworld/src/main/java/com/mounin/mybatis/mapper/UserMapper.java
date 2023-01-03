@@ -18,4 +18,9 @@ public interface UserMapper {
      * 修改用户信息
      */
     void updateUser();
+
+    /**
+     * 删除用户信息
+     */
+    void deleteUser();
 }
