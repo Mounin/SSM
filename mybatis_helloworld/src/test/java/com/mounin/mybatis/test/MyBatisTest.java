@@ -1,6 +1,7 @@
 package com.mounin.mybatis.test;
 
 import com.mounin.mybatis.mapper.UserMapper;
+import com.mounin.mybatis.utils.SqlSessionUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -38,6 +39,14 @@ public class MyBatisTest {
         // 7. 提交事务
 //        sqlSession.commit();
         // 8. 关闭事务
+        sqlSession.close();
+    }
+
+    @Test
+    public void testUpdate() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.updateUser();
         sqlSession.close();
     }
 }
