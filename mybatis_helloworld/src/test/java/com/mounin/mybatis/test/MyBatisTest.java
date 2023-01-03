@@ -1,6 +1,7 @@
 package com.mounin.mybatis.test;
 
 import com.mounin.mybatis.mapper.UserMapper;
+import com.mounin.mybatis.pojo.User;
 import com.mounin.mybatis.utils.SqlSessionUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @ClassName: MyBatisTest
@@ -55,6 +57,24 @@ public class MyBatisTest {
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         mapper.deleteUser();
+        sqlSession.close();
+    }
+
+    @Test
+    public void testGetUserById() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = mapper.getUserById();
+        System.out.println(user);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testGetAllUser() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> allUser = mapper.getAllUser();
+        allUser.forEach(System.out::println);
         sqlSession.close();
     }
 }
