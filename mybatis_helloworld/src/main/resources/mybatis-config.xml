@@ -4,8 +4,31 @@
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!--
+        MyBatis黑性能配置文件中的标签必须要按照指定的额顺序配置：
+        properties?,settings?,typeAliases?,typeHandlers?,
+        objectFactory?,objectWrapperFactory?,reflectorFactory?,
+        plugins?,environments?,databaseIdProvider?,mappers?
+    -->
+
     <!--引入properties文件，此后就可以在当前文件中使用${key}的方式访问value-->
     <properties resource="jdbc.properties"/>
+
+    <!--
+        typeAliases：设置类型别名，即为某个具体的类型设置一个别名
+        在MyBatis范围中，就可以使用别名表示一个具体的类型
+    -->
+    <typeAliases>
+        <!--
+            type：设置需要起别名的类型
+            alias：设置某个类型的别名
+        -->
+<!--        <typeAlias type="com.mounin.mybatis.pojo.User" alias="abc"/>-->
+        <!--若不设置alias，当前的类型拥有默认的别名，即类名且不区分大小写-->
+<!--        <typeAlias type="com.mounin.mybatis.pojo.User"/>-->
+        <!--通过包设置类型别名，指定包下的所有的类型将全部拥有默认的别名，即类名且不区分大小写-->
+        <package name="com.mounin.mybatis.pojo"/>
+    </typeAliases>
 
     <!--
         配置练级而数据库的环境
