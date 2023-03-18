@@ -22,4 +22,9 @@
         select * from ${tableName}
     </select>
 
+    <!--void insertUser(User user);-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(null, #{username}, #{password}, #{age}, #{gender}, #{email})
+    </insert>
+
 </mapper>
