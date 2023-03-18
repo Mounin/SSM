@@ -23,4 +23,11 @@ public class SpecialSQLMapperTest {
         List<User> list = mapper.getUserByLike("a");
         list.forEach(System.out::println);
     }
+
+    @Test
+    public void testDeleteMoreUser() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        SpecialSQLMapper mapper = sqlSession.getMapper(SpecialSQLMapper.class);
+        mapper.deleteMoreUser("9, 10");
+    }
 }

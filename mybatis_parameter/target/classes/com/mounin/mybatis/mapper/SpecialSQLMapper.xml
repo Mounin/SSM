@@ -12,4 +12,9 @@
         select * from t_user where username LIKE "%"#{mohu}"%"
     </select>
 
+    <!-- void deleteMoreUser(@Param("ids") String ids);-->
+    <select id="deleteMoreUser">
+        delete from t_user where id in (${ids})
+    </select>
+
 </mapper>
