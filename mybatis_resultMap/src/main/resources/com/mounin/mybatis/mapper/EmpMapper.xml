@@ -31,9 +31,18 @@
         select * from t_emp where emp_id = #{empId}
     </select>
 
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id column="emp_id" property="empId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+        <result column="gender" property="gender" />
+        <result column="dept_id" property="dept.deptId" />
+        <result column="dept_name" property="dept.deptName" />
+    </resultMap>
+
     <!-- Emp getEmpAndDept(@Param("empId") Integer empId); -->
-    <select id="getEmpAndDept" resultType="Emp">
-        select t_emp.*,t_dept.* 
+    <select id="getEmpAndDept" resultMap="empAndDeptResultMap">
+        select t_emp.*,t_dept.*
         from t_emp left join t_dept on t_emp.dept_id = t_dept.dept_id
         where emp_id = #{empId}
     </select>
