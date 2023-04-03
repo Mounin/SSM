@@ -14,6 +14,7 @@
             result：处理普通字段和实体类中属性的映射关系
                 column：设置映射关系中的字段名，必须是sql查询出的某个字段
                 property：设置映射关系中的属性的属性名，必须是处理的实体类类型中的属性名
+            association：处理多对一的映射关系（处理实体类类型的属性）
     -->
     <resultMap id="empResultMap" type="Emp">
         <id column="emp_id" property="empId" />
@@ -31,13 +32,24 @@
         select * from t_emp where emp_id = #{empId}
     </select>
 
-    <resultMap id="empAndDeptResultMap" type="Emp">
+    <resultMap id="empAndDeptResultMapOne" type="Emp">
         <id column="emp_id" property="empId" />
         <result column="emp_name" property="empName" />
         <result column="age" property="age" />
         <result column="gender" property="gender" />
         <result column="dept_id" property="dept.deptId" />
         <result column="dept_name" property="dept.deptName" />
+    </resultMap>
+
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id column="emp_id" property="empId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+        <result column="gender" property="gender" />
+        <association property="dept" javaType="Dept">
+            <id column="dept_id" property="deptId" />
+            <result column="dept_name" property="deptName" />
+        </association>
     </resultMap>
 
     <!-- Emp getEmpAndDept(@Param("empId") Integer empId); -->
