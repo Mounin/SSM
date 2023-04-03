@@ -1,5 +1,8 @@
 package com.mounin.mybatis.mapper;
 
+import com.mounin.mybatis.pojo.Emp;
+import org.apache.ibatis.annotations.Param;
+
 /**
  * @ClassName: EmpMapper
  * @Date: 2023/4/3 20:34
@@ -7,4 +10,11 @@ package com.mounin.mybatis.mapper;
  * @Description:
  **/
 public interface EmpMapper {
+
+    /**
+     * 根据empId查询emp信息
+     * @param empId
+     * @return
+     */
+    Emp getEmpByEmpId(@Param("empId") Integer empId);
 }
