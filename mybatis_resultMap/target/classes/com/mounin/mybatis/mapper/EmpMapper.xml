@@ -5,8 +5,19 @@
 
 <mapper namespace="com.mounin.mybatis.mapper.EmpMapper">
 
+    <resultMap id="empResultMap" type="Emp">
+        <id column="emp_id" property="empId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+<!--        <result column="gender" property="gender" />-->
+    </resultMap>
+
     <!-- Emp getEmpByEmpId(@Param("empId") Integer empId); -->
-    <select id="getEmpByEmpId" resultType="Emp">
+    <select id="getEmpByEmpId" resultMap="empResultMap">
+        select * from t_emp where emp_id = #{empId}
+    </select>
+
+    <select id="getEmpByEmpIdOld" resultType="Emp">
         select * from t_emp where emp_id = #{empId}
     </select>
 </mapper>
