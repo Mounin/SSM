@@ -17,4 +17,11 @@ public interface EmpMapper {
      * @return
      */
     Emp getEmpByEmpId(@Param("empId") Integer empId);
+
+    /**
+     * 获取员工以及对应的部门信息
+     * @param empId
+     * @return
+     */
+    Emp getEmpAndDept(@Param("empId") Integer empId);
 }

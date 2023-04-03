@@ -30,4 +30,11 @@
     <select id="getEmpByEmpIdOld" resultType="Emp">
         select * from t_emp where emp_id = #{empId}
     </select>
+
+    <!-- Emp getEmpAndDept(@Param("empId") Integer empId); -->
+    <select id="getEmpAndDept" resultType="Emp">
+        select t_emp.*,t_dept.* 
+        from t_emp left join t_dept on t_emp.dept_id = t_dept.dept_id
+        where emp_id = #{empId}
+    </select>
 </mapper>
